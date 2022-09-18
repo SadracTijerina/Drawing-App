@@ -8,12 +8,26 @@ import android.view.MotionEvent
 import android.view.View
 
 class DrawingView(context: Context, attrs: AttributeSet): View(context, attrs) {
+
+    // A variable of custom path inner class for further use
     private var mDrawPath: CustomPath? = null
+
+    // An instance of a bitmap
     private var mCanvasBitmap: Bitmap? = null
+
+    // The Paint class which holds the style and color information about how to draw geometries,
+    // text and bitmaps
     private var mDrawPaint: Paint? = null
+
+    // An instance of a canvas paint view
     private var mCanvasPaint: Paint? = null
+
+    // A variable for the stroke/brush size to draw on canvas
     private var mBrushSize: Float = 0.toFloat()
+
+    // A variable to hold the color of the stroke
     private var color = Color.BLACK
+
     private var canvas: Canvas? = null
     private val mPaths = ArrayList<CustomPath>()
 
@@ -101,6 +115,11 @@ class DrawingView(context: Context, attrs: AttributeSet): View(context, attrs) {
         )
 
         mDrawPaint!!.strokeWidth == mBrushSize
+    }
+
+    fun setColor(newColor: String) {
+        color = Color.parseColor(newColor)
+        mDrawPaint!!.color = color
     }
 
     internal inner class CustomPath(var color: Int, var brushThickness: Float): Path() {}
